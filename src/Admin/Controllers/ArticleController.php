@@ -35,7 +35,7 @@ class ArticleController extends AdminController
             return join('&nbsp;', $types);
         });
         $grid->column('title', __('Title'))->filter('like');
-        $grid->column('sort', __('Sort'))->editable();
+        $grid->column('sort', __('Sort'))->sortable()->editable();
         $grid->column('is_display', __('Is display'))->switch();
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
@@ -87,6 +87,7 @@ class ArticleController extends AdminController
     {
         $form = new Form(new Article());
 
+        $form->multipleSelect('types', __('Types'))->options(ArticleType::query()->pluck('name', 'id'))->required();
         $form->text('title', '标题');
         $form->editor('content', '内容');
         $form->number('sort', '排序')->default(0);

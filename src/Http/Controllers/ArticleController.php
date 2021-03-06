@@ -5,6 +5,7 @@ namespace Aoeng\Laravel\Admin\Article\Http\Controllers;
 use Aoeng\Laravel\Admin\Article\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 /**
  *
@@ -47,6 +48,28 @@ class ArticleController extends Controller
         $article = Article::query()->where('is_display', 1)->find($request->input('id', 0));
 
         return $this->responseJson($article);
+    }
+
+    public function upload(Request $request)
+    {
+
+        $url = '';
+
+        $image = $request->file('upload');
+
+        $fileName = $image->getFilename() . time() . date('ymd') . '.' . $image->getClientOriginalExtension();
+
+        $pathName = config('admin.upload.directory.file') . date('Y/m/d');
+
+        if ($path = Storage::putFileAs($pathName, $image, $fileName)) {
+            $url = Storage::url($path);
+        }
+
+        return response()->json([
+            'uploaded' => 1,
+            'fileName' => $fileName,
+            'url'      => $url
+        ]);
     }
 
 }

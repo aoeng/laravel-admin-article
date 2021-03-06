@@ -24,11 +24,6 @@ class ArticleServiceProvider extends ServiceProvider
             $this->loadViewsFrom($views, 'laravel-admin-article');
         }
 
-        if ($this->app->runningInConsole() && $assets = $extension->assets()) {
-            $this->publishes([
-                $assets => public_path('vendor/aoeng/laravel-admin-article')
-            ], 'laravel-admin-article');
-        }
 
         Admin::booting(function () {
             Form::extend('editor', Editor::class);
