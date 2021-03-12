@@ -5,6 +5,7 @@ namespace Aoeng\Laravel\Admin\Article;
 
 
 use Encore\Admin\Extension;
+use Illuminate\Support\Facades\Artisan;
 
 class Article extends Extension
 {
@@ -21,6 +22,8 @@ class Article extends Extension
     public static function import()
     {
         parent::import();
+
+        Artisan::call('vendor:publish', ['--tag' => 'laravel-admin-ckeditor']);
 
         parent::createMenu('文章管理', '/', 'fa-book', 0, [
             ['title' => '文章分类', 'path' => 'article-types', 'icon' => 'fa-bookmark'],

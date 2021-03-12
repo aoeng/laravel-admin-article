@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  *
- * @group  文章 ArticleController
+ * @group  文章相关 ArticleController
  * Class ArticleController
  * @package App\Http\Controllers
  */
 class ArticleController extends Controller
 {
     /**
-     * 文章列表  article_index
+     * 文章列表  ArticleController_index
      *
      * @bodyParam type string required 分类的flag
      * @param Request $request
@@ -37,7 +37,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * 文章详情  article_show
+     * 文章详情  ArticleController_show
      *
      * @bodyParam id string required ID
      * @param Request $request

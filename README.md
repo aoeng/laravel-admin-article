@@ -5,6 +5,8 @@ laravel-admin extension 文章管理
 
 ```bash
 composer require  aoeng/laravel-admin-article
+
+php artisan migrate
 ```
 
 导入菜单
@@ -15,6 +17,7 @@ php artisan admin:import article
 
 配置编辑器 `admin.php`的扩展配置里加上
 
+默认使用ckeditor
 ``` 
  'ckeditor' => [
 
@@ -30,7 +33,9 @@ php artisan admin:import article
             ]
         ],
 ```
-其他编辑器配置`editor`
+其他编辑器配置`app\Admin\bootstrap.php`
 ```injectablephp
+use Encore\Admin\Form;
+
 Form::extend('editor', ...);
 ```
