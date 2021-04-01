@@ -30,7 +30,7 @@ class ArticleController extends Controller
                     $query->where('flag', $type);
                 });
             })
-            ->select(['title', 'picture', 'sort', 'created_at'])
+            ->select(['id', 'title', 'picture', 'sort', 'created_at'])
             ->where('is_display', 1)
             ->paginate();
 
