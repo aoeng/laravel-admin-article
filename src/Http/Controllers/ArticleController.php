@@ -32,6 +32,7 @@ class ArticleController extends Controller
             })
             ->select(['id', 'title', 'picture', 'sort', 'created_at'])
             ->where('is_display', 1)
+            ->orderByDesc('sort')
             ->paginate();
 
         return $this->responseJson($article);
